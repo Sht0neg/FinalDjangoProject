@@ -19,3 +19,11 @@ footer{
     height: 100px;
     color: maroon;
 }
+
+.div_login{
+    display: flex;
+    width: 350px;
+    height: 270px;
+    align-items: center;
+    justify-content: center;
+}
