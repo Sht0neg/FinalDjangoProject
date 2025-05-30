@@ -6,13 +6,15 @@ from django.urls import reverse
 
 
 class UserLoginView(LoginView):
-    pass
+    template_name = "login.html"
 
 class RegistrationView(CreateView):
-    pass
+    form_class = UserCreationForm
+    template_name = "registration.html"
 
 class AccountView(DetailView):
-    pass
+    model = User
+    template_name = "account.html" 
 
 class UserLogoutView(LogoutView):
     pass
