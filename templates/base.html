@@ -3,26 +3,33 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="\static\styles.css">
+    <link rel="stylesheet" href="/static/styles.css">
     <title>название</title>
 </head>
 <body>
     <header>
         <div class="header_menu">
-            <a href="">Главная</a>
-            <a href="">Каталог</a>
-            <a href="">О нас</a>
+            <a href="" class="text_menu">Главная</a>
+            <a href="" class="text_menu">Каталог</a>
+            <a href="" class="text_menu">О нас</a>
         </div>
         <div class="header_log_reg">
-            <a href="">Войти</a>
-            <a href="">Зарегистрироваться</a>
+            <a href="" class="text_menu">Войти</a>
+            <a href="" class="text_menu">Зарегистрироваться</a>
         </div>
     </header>    
 
-    {% block main %}{% endblock main %}
+    <main>
+        {% block main %}{% endblock main %}
+    </main>
 
     {% block scripts %}{% endblock scripts %}
 
-    <footer></footer>
+    <footer>
+        <p class="footer_info">
+            <a href="https://github.com/frol1k3" class="text_menu">github frol1k3</a>
+            <a href="https://github.com/Sht0neg" class="text_menu">github Sht0neg</a>
+        </p>
+    </footer>
 </body>
 </html>
