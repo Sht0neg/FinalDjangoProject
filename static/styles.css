@@ -40,11 +40,19 @@ footer{
 }
 
 .div_log_reg{
+    padding: 15px;
+    padding-left: 19px;
+    margin-top: 20px;
     display: flex;
-    width: 350px;
-    height: 270px;
+    width: 360px;
+    height: auto;
     align-items: center;
     justify-content: center;
+    background-color: maroon;
+    border-radius: 10px;
+    flex-direction: column;
+    color: rgb(207, 207, 207);
+    gap: 10px;
 }
 
 .header_menu{
