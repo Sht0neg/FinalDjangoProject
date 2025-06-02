@@ -8,4 +8,5 @@ urlpatterns = [
     path("user/", include("user.urls")),
     path("", main, name="main"),
     path("catalog/", catalog, name="catalog"),
+    path("info/", info, name="info")
 ]
