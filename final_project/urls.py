@@ -7,6 +7,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path("user/", include("user.urls")),
     path("", main, name="main"),
-    path("catalog/", catalog, name="catalog"),
+    path("vacancy/", include("vacancy.urls")),
     path("info/", info, name="info")
 ]

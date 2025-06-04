@@ -7,8 +7,5 @@ from datetime import *
 def main(req):
     return render(req, "main.html")
 
-def catalog(req):
-    return render(req, "catalog.html")
-
 def info(req):
     return render(req, "info.html")
