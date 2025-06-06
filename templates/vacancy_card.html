@@ -1,10 +1,13 @@
 {% extends "base.html" %}
 
 {% block main %}
-    <h1>Полная информация о вакансии</h1>
-    <h2>{{ vacancy.title }}</h2>
-    <h3>Работодатель: {{ vacancy.author.user.username }} </h3>
-    <h3>Зарплата: {{ vacancy.price }}</h3>
-    <p>Описание: {{ vacancy.description }}</p>
-    <p>Дата публикации: {{ vacancy.publication_date }}</p>
+    <div class="full-info-card">
+        <h1 class="full-info-text">Полная информация о вакансии</h1>
+        <h2 class="full-info-text">Название: {{ vacancy.title }}</h2>
+        <h3 class="full-info-text">Работодатель: {{ vacancy.author.user.username }} </h3>
+        <h3 class="full-info-text">Зарплата: {{ vacancy.price }}</h3>
+        <p class="full-info-text">Описание: {{ vacancy.description }}</p>
+        <p class="full-info-text">Дата публикации: {{ vacancy.publication_date }}</p>
+    </div>
+    
 {% endblock main %}
