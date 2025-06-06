@@ -5,7 +5,13 @@
         <h1>Регистрация</h1>
         <form method="post">
             {% csrf_token %}
-            {{ form }}
+            {{form.name}}
+            {{form.surname}}
+            {{form.last_name}}
+            {{form.phone}}
+            {{form.phone.errors}}
+            {{form.password}}
+            {{form.role}}
             <input type="submit" value="Зарегистрироваться">
         </form>
     </div>

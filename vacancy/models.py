@@ -9,6 +9,7 @@ class Vacancy(models.Model):
     price = models.FloatField(verbose_name="Заработная плата")
     publication_date = models.DateField(verbose_name="Дата публикации")
 
+
     date_create = models.DateTimeField(verbose_name="Дата добавления", auto_now_add=True)
     date_edit = models.DateTimeField(verbose_name="Дата изменения", auto_now=True)
 
