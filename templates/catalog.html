@@ -3,6 +3,13 @@
 {% block main %}
     <h1>Все акансии</h1>
     <div class="wrap">
-        <div class="card"></div>
+        {% for vacancy in vacancies %}
+            <div class="card">
+                <h2 class="title-card">{{ vacancy.title }}</h2>
+                <p class="price-card">{{ vacancy.price }}</p>
+                <p class="desc-card">{{ vacancy.author.user.username }}</p>
+                <a href="{% url 'vacancy' vacancy.id %}" class="url_text">Полная информация</a>
+            </div>
+        {% endfor %}
     </div>
 {% endblock main %}
