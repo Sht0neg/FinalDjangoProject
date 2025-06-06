@@ -8,6 +8,7 @@
                 <h2 class="title-card">{{ vacancy.title }}</h2>
                 <p class="desc-card">{{ vacancy.price }}</p>
                 <p class="desc-card">{{ vacancy.author.user.username }}</p>
+                <a href="{% url 'vacancy' vacancy.id %}">Полная информация</a>
             </div>
         {% endfor %}
     </div>
