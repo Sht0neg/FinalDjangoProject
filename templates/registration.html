@@ -4,14 +4,14 @@
     <div class="div_log_reg">
         <h1>Регистрация</h1>
         <form method="post">
-            {% csrf_token %}
-            {{form.name}}
-            {{form.surname}}
-            {{form.last_name}}
-            {{form.phone}}
+            {% csrf_token %} 
+            <h3 class="text-reg">Фамилия: {{form.surname}}</h3>
+            <h3 class="text-reg">Имя: {{form.name}}</h3>
+            <h3 class="text-reg">Отчество: {{form.last_name}}</h3>
+            <h3 class="text-reg">Номер телефона: {{form.phone}}</h3>
             {{form.phone.errors}}
-            {{form.password}}
-            {{form.role}}
+            <h3 class="text-reg">Пароль: {{form.password}}</h3>
+            <h3 class="text-reg">Работодатель/искатель: {{form.role}}</h3>
             <input type="submit" value="Зарегистрироваться">
         </form>
     </div>
