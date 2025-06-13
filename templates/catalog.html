@@ -2,6 +2,16 @@
 
 {% block main %}
     <h1>Все акансии</h1>
+    <form class="panel-filter" method="GET">
+        <label for="price">Зарплата:</label>
+        <select name="price" id="price"></select>
+        <input type="submit" value="Найти">
+    </form>
+    <form class="panel-filter" method="GET">
+        <label for="date">Дата публикации:</label>
+        <input name="date">
+        <input type="submit" value="Найти">    
+    </form>
     <div class="wrap">
         {% for vacancy in vacancies %}
             <div class="card">

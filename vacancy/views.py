@@ -10,7 +10,13 @@ class IndexListView (ListView):
     context_object_name = "vacancies"
 
 def catalog(req):
+    price = req.GET.get("price")
+    date = req.GET.get("date")
     vacancies = Vacancy.objects.all()
+    if (price):
+        vacancies = vacancies.filter(prices=price)
+    if (date):
+        vacancies = Vacancy.objects.filter(date_public__year__gt=int(date))   
     return render(req, "catalog.html", {"vacancies": vacancies})
 
 def vacancy_card(request: HttpRequest, pk: int):
