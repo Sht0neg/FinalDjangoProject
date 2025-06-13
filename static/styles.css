@@ -28,6 +28,9 @@ body{
 
 main {
     flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 footer{
@@ -150,4 +153,10 @@ footer{
 .text-reg{
     font-size: 18px;
     font-weight: 100;
+}
+
+.panel-filter{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
 }

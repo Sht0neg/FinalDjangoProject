@@ -12,11 +12,14 @@ class IndexListView (ListView):
 def catalog(req):
     price = req.GET.get("price")
     date = req.GET.get("date")
+    title = req.GET.get("title")
     vacancies = Vacancy.objects.all()
     if (price):
         vacancies = vacancies.filter(prices=price)
     if (date):
-        vacancies = Vacancy.objects.filter(date_public__year__gt=int(date))   
+        vacancies = Vacancy.objects.filter(date_public__year__gt=int(date)) 
+    if (title):
+        vacancies = Vacancy.objects.filter(title__icontains=title)
     return render(req, "catalog.html", {"vacancies": vacancies})
 
 def vacancy_card(request: HttpRequest, pk: int):
