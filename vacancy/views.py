@@ -15,12 +15,12 @@ def catalog(req):
     title = req.GET.get("title")
     vacancies = Vacancy.objects.all()
     if (price):
-        vacancies = vacancies.filter(prices=price)
+        vacancies = vacancies.filter(price=int(price))
     if (date):
-        vacancies = Vacancy.objects.filter(date_public__year__gt=int(date)) 
+        vacancies = vacancies.filter(publication_date__month__gt=int(date) - 1) 
     if (title):
-        vacancies = Vacancy.objects.filter(title__icontains=title)
-    return render(req, "catalog.html", {"vacancies": vacancies})
+        vacancies = vacancies.filter(id=int(title))
+    return render(req, "catalog.html", {"vacancies": vacancies, "price":price, "date":date, "title":Vacancy.objects.get(id=int(title)) if title else ""})
 
 def vacancy_card(request: HttpRequest, pk: int):
     if (pk):
@@ -28,3 +28,7 @@ def vacancy_card(request: HttpRequest, pk: int):
         return render(request, "vacancy_card.html", {"vacancy":vacancy})
     return reverse("catalog")
 
+def api_get_all_vacancies(req):
+    vacancies = Vacancy.objects.all()
+    dataList = [vacancy.parse_object() for vacancy in vacancies]
+    return JsonResponse(dataList, safe=False)
