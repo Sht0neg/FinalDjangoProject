@@ -13,6 +13,16 @@ class Vacancy(models.Model):
     date_create = models.DateTimeField(verbose_name="Дата добавления", auto_now_add=True)
     date_edit = models.DateTimeField(verbose_name="Дата изменения", auto_now=True)
 
+    def parse_object(self):
+        return {
+            "id": self.id,
+            "title": self.title,
+            "author": self.author.parse_object(),
+            "description": self.description,
+            "price": self.price,
+            "publication_date": self.publication_date.month,
+        }
+
     def __str__(self):
         return self.title
 

@@ -3,19 +3,25 @@
 {% block main %}
     <h1>Все акансии</h1>
     <div class="panel-filter">
-        <form method="GET">
+    <form method="GET">
         <label for="price">Зарплата:</label>
-        <select name="price" id="price"></select>
-        <input type="submit" value="Найти">
-    </form>
-    <form method="GET">
+        <select name="price" id="price">
+            {% if price %}
+                    <option value="{{price}}">{{price}}</option>
+            {% endif %}
+        </select>
         <label for="date">Дата публикации:</label>
-        <input name="date">
-        <input type="submit" value="Найти">    
-    </form>
-    <form method="GET">
+        <select name="date" id="date">
+            {% if date %}
+                    <option value="{{date}}">{{date}}</option>
+            {% endif %}
+        </select>  
         <label for="title">Название:</label>
-        <input name="title">
+        <select name="title" id="title">
+            {% if title %}
+                    <option value="{{title}}">{{title}}</option>
+            {% endif %}
+        </select>
         <input type="submit" value="Найти">    
     </form>
     </div>
@@ -31,3 +37,6 @@
         {% endfor %}
     </div>
 {% endblock main %}
+{% block script %}
+    <script src="/static/loadForm.js"></script>
+{% endblock script %}
