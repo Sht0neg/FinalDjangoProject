@@ -5,7 +5,8 @@
         <h1>Войти</h1>
         <form method="post">
             {% csrf_token %}
-            {{ form }}
+            <h3 class="text-reg">Номер телефоа: {{ form.phone }}</h3>
+            <h3 class="text-reg">Пароль: {{ form.password }}</h3>
             <input type="submit" value="Войти">
         </form>
     </div>

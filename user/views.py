@@ -27,7 +27,6 @@ def loginProfile(req):
             return redirect(reverse("login"))
     else:
         form = ProfileLoginForm()
-
     return render(req, "login.html", {"form": form})
 def registerProfile(req:HttpRequest):
     if req.method == "POST":
