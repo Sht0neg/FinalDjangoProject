@@ -8,6 +8,12 @@ class Profile(models.Model):
     role = models.BooleanField(verbose_name="Роль пользователя", blank=True, default=False)
     phone = models.CharField(verbose_name="Номер телефона", max_length=50, blank=True, unique=True)
 
+    def __str__(self):
+        userst = self.user.username.split("/")
+        return userst[0] + " " + userst[1] + " " + userst[2]
+        
+    
+
     def parse_object(self):
         return{
             "id": self.id,

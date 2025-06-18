@@ -1,8 +1,11 @@
 from django.shortcuts import render
 from vacancy.models import *
+from vacancy.forms import *
+from datetime import *
 from django.views.generic import ListView
 from django.http import HttpRequest, JsonResponse
 from django.urls import reverse
+from django.shortcuts import redirect
 
 class IndexListView (ListView):
     model = Vacancy
@@ -27,6 +30,29 @@ def vacancy_card(request: HttpRequest, pk: int):
         vacancy = Vacancy.objects.get(id=pk)
         return render(request, "vacancy_card.html", {"vacancy":vacancy})
     return reverse("catalog")
+
+def create_vacancy(req):
+    if req.method == "POST":
+        form = CreateVacancyForm(req.POST)
+        print(form.is_valid())
+        if form.is_valid():
+            print("fkld")
+            title = form.cleaned_data["title"]
+            desc = form.cleaned_data["description"]
+            price = form.cleaned_data["price"]
+            vacancy = Vacancy()
+            vacancy.title = title
+            vacancy.description = desc
+            vacancy.price = price
+            vacancy.publication_date = datetime.now()
+            vacancy.author = req.user.profile
+            vacancy.save()
+            print(vacancy)
+            return redirect(reverse("catalog"))
+    else:
+        form = CreateVacancyForm()
+
+    return render(req, "create_vacancy.html", {"form": form})
 
 def api_get_all_vacancies(req):
     vacancies = Vacancy.objects.all()

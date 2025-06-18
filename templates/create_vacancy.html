@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block main %}
+    <h1>Создание вакансии</h1>
+    <form method="post">
+        {% csrf_token %}
+        {{form.title}}
+        {{form.title.errors}}
+        {{form.description}}
+        {{form.description.errors}}
+        {{form.price}}
+        {{form.price.errors}}
+        <input type="submit" value="Создать">
+    </form>
+
+{% endblock main %}

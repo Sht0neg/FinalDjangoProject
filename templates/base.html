@@ -12,6 +12,9 @@
             <a href="{% url "main" %}" class="text_menu">Главная</a>
             <a href="{% url "catalog" %}" class="text_menu">Вакансии</a>
             <a href="{% url "info" %}" class="text_menu">О нас</a>
+            {% if user.profile.role %}
+                <a href="{% url "create_vacancy" %}" class="text_menu">Создать вакансию</a>
+            {% endif %}
         </div>
         <div class="header_log_reg">
             {% if user.is_authenticated %}
