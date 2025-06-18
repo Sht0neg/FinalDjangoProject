@@ -9,10 +9,22 @@
         <h3 class="text-reg">Отчество: </h3>
         <h3 class="text-reg">Номер телефона: </h3>
         {% if user.profile.role %}
-        
+        {% else %}
+            <div class="wrap">
+            {% if vacancies %}
+                {% for vacancy in vacancies %}
+                    <div class="card">
+                        <h2 class="title-card">{{ vacancy.title }}</h2>
+                        <p class="price-card">{{ vacancy.price }}</p>
+                        <p class="desc-card">{{ vacancy.author}}</p>
+                        <a href="{% url 'vacancy' vacancy.id %}" class="url_text">Полная информация</a>
+                    </div>
+                {% endfor %}
+                </div>
+            {% endif %}
         {% endif %}
         <form action="{% url 'logout' %}" method="post">
-        {% csrf_token %}
+            {% csrf_token %}
         <input type="submit" value="Выйти из аккунта">
     </form>
     </div>

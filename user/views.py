@@ -8,11 +8,13 @@ from user.forms import *
 from user.models import *
 from django.http import HttpResponseRedirect, HttpRequest
 from django.shortcuts import render, redirect
+from vacancy.models import *
 
 
-class AccountView(DetailView):
-    model = User
-    template_name = "account.html" 
+def account(req, pk:int):
+    profiles = User.objects.get(id=pk)
+    vacancies = Vacancy.objects.filter(profile=req.user.profile)
+    return render(req, 'account.html', {"vacancies":vacancies, "user":profiles})
 
 def loginProfile(req):
     if req.method == "POST":
@@ -28,6 +30,7 @@ def loginProfile(req):
     else:
         form = ProfileLoginForm()
     return render(req, "login.html", {"form": form})
+
 def registerProfile(req:HttpRequest):
     if req.method == "POST":
         form = ProfileRegisterForm(req.POST)
@@ -62,3 +65,9 @@ def registerProfile(req:HttpRequest):
 
 class UserLogoutView(LogoutView):
     pass
+
+def add_vacancy(req, pk:int):
+    vacancy = Vacancy.objects.get(id=pk)
+    profile = req.user.profile
+    profile.submit_vacancies.add(vacancy)
+    return redirect(reverse("account", args=[req.user.id,]))
