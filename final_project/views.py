@@ -6,7 +6,8 @@ from datetime import *
 from vacancy.models import *
 
 def main(req):
-    return render(req, "main.html")
+    vacancies = Vacancy.objects.all()
+    return render(req, "main.html", {"vacancies": vacancies})
 
 def info(req):
     return render(req, "info.html")

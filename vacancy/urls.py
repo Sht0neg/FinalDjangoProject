@@ -9,4 +9,5 @@ urlpatterns = [
     path("all-vacancies/", api_get_all_vacancies, name="api_get_all_vacancies"),
     path("create-vacancies/", create_vacancy, name="create_vacancy"),
     path("add-vacancy/<int:pk>", add_vacancy, name="add_vacancy"),
+    path("del-vacancy/<int:pk>", del_vacancy, name="del_vacancy"),
 ]

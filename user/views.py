@@ -12,9 +12,9 @@ from vacancy.models import *
 
 
 def account(req, pk:int):
-    profiles = User.objects.get(id=pk)
     vacancies = Vacancy.objects.filter(profile=req.user.profile)
-    return render(req, 'account.html', {"vacancies":vacancies, "user":profiles})
+    name = req.user.username.split("/")[0]
+    return render(req, 'account.html', {"vacancies":vacancies, "name":name, })
 
 def loginProfile(req):
     if req.method == "POST":
@@ -50,7 +50,7 @@ def registerProfile(req:HttpRequest):
                 user.profile.role = True
                 user.save()
             else:
-                user = User(username=name, first_name=surname, last_name=last_name)
+                user = User(username=username, first_name=surname, last_name=last_name)
                 user.set_password(password)
                 user.save()
                 user.profile.phone = phone
@@ -66,8 +66,4 @@ def registerProfile(req:HttpRequest):
 class UserLogoutView(LogoutView):
     pass
 
-def add_vacancy(req, pk:int):
-    vacancy = Vacancy.objects.get(id=pk)
-    profile = req.user.profile
-    profile.submit_vacancies.add(vacancy)
-    return redirect(reverse("account", args=[req.user.id,]))
+

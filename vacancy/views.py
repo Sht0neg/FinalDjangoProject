@@ -54,6 +54,18 @@ def create_vacancy(req):
 
     return render(req, "create_vacancy.html", {"form": form})
 
+def add_vacancy(req, pk:int):
+    vacancy = Vacancy.objects.get(id=pk)
+    profile = req.user.profile
+    profile.submit_vacancies.add(vacancy)
+    return redirect(reverse("account", args=[req.user.id,]))
+
+def del_vacancy(req, pk:int):
+    vacancy = Vacancy.objects.get(id=pk)
+    profile = req.user.profile
+    profile.submit_vacancies.remove(vacancy)
+    return redirect(reverse("account", args=[req.user.id,]))
+
 def api_get_all_vacancies(req):
     vacancies = Vacancy.objects.all()
     dataList = [vacancy.parse_object() for vacancy in vacancies]

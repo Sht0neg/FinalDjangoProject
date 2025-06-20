@@ -5,7 +5,7 @@ from django.dispatch import receiver
 
 
 class Profile(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE, related_query_name="profile")
+    user = models.OneToOneField(User, on_delete=models.CASCADE, related_query_name="profile", related_name="profile")
     role = models.BooleanField(verbose_name="Роль пользователя", blank=True, default=False)
     phone = models.CharField(verbose_name="Номер телефона", max_length=50, blank=True, unique=True)
 
