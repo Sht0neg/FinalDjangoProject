@@ -12,7 +12,10 @@ from vacancy.models import *
 
 
 def account(req, pk:int):
-    vacancies = Vacancy.objects.filter(profile=req.user.profile)
+    if req.user.profile.role:
+        vacancies = Vacancy.objects.filter(author=req.user.profile)
+    else:
+        vacancies = Vacancy.objects.filter(profile=req.user.profile)
     name = req.user.username.split("/")[0]
     return render(req, 'account.html', {"vacancies":vacancies, "name":name, })
 

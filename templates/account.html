@@ -8,9 +8,7 @@
         <h3 class="text-reg">Имя: {{name}}</h3>
         <h3 class="text-reg">Отчество: {{user.last_name}}</h3>
         <h3 class="text-reg">Номер телефона: {{user.profile.phone}}</h3>
-        {% if user.profile.role %}
-        {% else %}
-            <div class="wrap">
+        <div class="wrap">
             {% if vacancies %}
                 {% for vacancy in vacancies %}
                     <div class="card">
@@ -18,12 +16,15 @@
                         <p class="price-card">{{ vacancy.price }}</p>
                         <p class="desc-card">{{ vacancy.author}}</p>
                         <a href="{% url 'vacancy' vacancy.id %}" class="url_text">Полная информация</a>
+                        {% if user.profile.role %}
+                        <a href="{% url 'update_vacancy' vacancy.id %}" class="url_text">Изменить вакансию</a>
+                        {% else %}
                         <a href="{% url 'del_vacancy' vacancy.id %}" class="url_text">Убрать вакансию из отмеченных</a>
+                        {% endif %}
                     </div>
                 {% endfor %}
                 </div>
             {% endif %}
-        {% endif %}
         <form action="{% url 'logout' %}" method="post">
             {% csrf_token %}
         <input type="submit" value="Выйти из аккунта">

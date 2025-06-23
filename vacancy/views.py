@@ -6,6 +6,7 @@ from django.views.generic import ListView
 from django.http import HttpRequest, JsonResponse
 from django.urls import reverse
 from django.shortcuts import redirect
+from django.db.models import Q
 
 class IndexListView (ListView):
     model = Vacancy
@@ -16,7 +17,7 @@ def catalog(req):
     price = req.GET.get("price")
     date = req.GET.get("date")
     title = req.GET.get("title")
-    vacancies = Vacancy.objects.all()
+    vacancies = Vacancy.objects.filter(~Q(profile__exact=req.user.profile))
     if (price):
         vacancies = vacancies.filter(price__gt=int(price))
     if (date):
@@ -53,6 +54,30 @@ def create_vacancy(req):
         form = CreateVacancyForm()
 
     return render(req, "create_vacancy.html", {"form": form})
+
+def update_vacancy(req, pk:int):
+    if req.method == "POST":
+        vacancy = Vacancy.objects.get(id=pk)
+        form = CreateVacancyForm(req.POST)
+        if form.is_valid():
+            title = form.cleaned_data["title"]
+            desc = form.cleaned_data["description"]
+            price = form.cleaned_data["price"]
+            vacancy.title = title
+            vacancy.description = desc
+            vacancy.price = price
+            vacancy.publication_date = vacancy.publication_date
+            vacancy.author = req.user.profile
+            vacancy.save()
+            return redirect(reverse("catalog"))
+    else:
+        vacancy = Vacancy.objects.get(id=pk)
+        form = CreateVacancyForm()
+        form.fields["title"].initial = vacancy.title
+        form.fields["description"].initial = vacancy.description
+        form.fields["price"].initial = float(vacancy.price)
+
+    return render(req, "update_vacancy.html", {"form": form})
 
 def add_vacancy(req, pk:int):
     vacancy = Vacancy.objects.get(id=pk)

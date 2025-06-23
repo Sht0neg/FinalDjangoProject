@@ -43,7 +43,7 @@
         {% for vacancy in vacancies %}
             <div class="card">
                 <h2 class="title-card">{{ vacancy.title }}</h2>
-                <p class="price-card">{{ vacancy.price }}</p>
+                <p class="price-card">{{ vacancy.price }} рублей</p>
                 <p class="desc-card">{{ vacancy.author}}</p>
                 <a href="{% url 'vacancy' vacancy.id %}" class="url_text">Полная информация</a>
             </div>
