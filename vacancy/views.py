@@ -18,7 +18,7 @@ def catalog(req):
     title = req.GET.get("title")
     vacancies = Vacancy.objects.all()
     if (price):
-        vacancies = vacancies.filter(price=int(price))
+        vacancies = vacancies.filter(price__gt=int(price))
     if (date):
         vacancies = vacancies.filter(publication_date__month__gt=int(date) - 1) 
     if (title):

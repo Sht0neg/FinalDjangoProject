@@ -7,8 +7,21 @@
         <label for="price">Зарплата:</label>
         <select name="price" id="price">
             {% if price %}
-                    <option value="{{price}}">{{price}}</option>
+                <option value="{{price}}">От {{price}} рублей в месяц</option>
             {% endif %}
+            <option value="">-</option>
+            <option value="10000">От 10000 рублей в месяц</option>
+            <option value="20000">От 20000 рублей в месяц</option>
+            <option value="30000">От 30000 рублей в месяц</option>
+            <option value="40000">От 40000 рублей в месяц</option>
+            <option value="50000">От 50000 рублей в месяц</option>
+            <option value="60000">От 60000 рублей в месяц</option>
+            <option value="70000">От 70000 рублей в месяц</option>
+            <option value="80000">От 80000 рублей в месяц</option>
+            <option value="90000">От 90000 рублей в месяц</option>
+            <option value="100000">От 100000 рублей в месяц</option>
+            <option value="150000">От 150000 рублей в месяц</option>
+            <option value="200000">От 200000 рублей в месяц</option>
         </select>
         <label for="date">Дата публикации:</label>
         <select name="date" id="date">

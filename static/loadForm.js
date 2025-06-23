@@ -1,22 +1,3 @@
-async function loadSalaries(data) {
-    const selectEl = document.querySelector("#price")
-    const option = document.createElement("option")
-    last_value = undefined
-    if (selectEl.children.length > 0){
-        last_value = selectEl.children[0].getAttribute("value")
-    }
-    option.textContent = "-"
-    option.setAttribute("value", "")
-    selectEl.appendChild(option)
-    data.forEach(vacancy => {
-        if (vacancy.price != last_value){
-            const option = document.createElement("option")
-            option.textContent = vacancy.price
-            option.setAttribute("value", vacancy.price)
-            selectEl.appendChild(option)    
-        }
-    });
-}
 async function loadDates(data) {
     const selectEl = document.querySelector("#date")
     last_value = undefined
@@ -27,11 +8,32 @@ async function loadDates(data) {
     option.textContent = "-"
     option.setAttribute("value", "")
     selectEl.appendChild(option)
-    data.forEach(vacancy => {
-        if (vacancy.publication_date != last_value){
+    let monthes = []
+    data.forEach(vacancy=>{
+        if (!monthes.includes(vacancy.publication_date)){
+            monthes.push(vacancy.publication_date)
+        }
+    })
+    let monthes_to_strings = {
+        "1": "Январь",
+        "2": "Февраль",
+        "3": "Март",
+        "4": "Апрель",
+        "5": "Май",
+        "6": "Июнь",
+        "7": "Июль",
+        "8": "Август",
+        "9": "Сентябрь",
+        "10": "Октябрь",
+        "11": "Ноябрь",
+        "12": "Декабрь"
+    }
+    console.log(monthes)
+    monthes.forEach(month => {
+        if (month!= last_value){
             const option = document.createElement("option")
-            option.textContent = vacancy.publication_date
-            option.setAttribute("value", vacancy.publication_date)
+            option.textContent = monthes_to_strings[month]
+            option.setAttribute("value", month)
             selectEl.appendChild(option)
         }
     });
@@ -63,7 +65,6 @@ async function dataLoad(){
 
     loadDates(data)
     loadTitles(data)
-    loadSalaries(data)
 }
 
 dataLoad()
