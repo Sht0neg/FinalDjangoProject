@@ -11,7 +11,7 @@ class Profile(models.Model):
 
     def __str__(self):
         userst = self.user.username.split("/")
-        return userst[0] + " " + userst[1] + " " + userst[2]
+        return userst[1] + " " + userst[0] + " " + userst[2]
         
     
 

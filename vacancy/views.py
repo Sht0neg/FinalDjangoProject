@@ -17,7 +17,10 @@ def catalog(req):
     price = req.GET.get("price")
     date = req.GET.get("date")
     title = req.GET.get("title")
-    vacancies = Vacancy.objects.filter(~Q(profile__exact=req.user.profile))
+    if req.user.is_authenticated:
+        vacancies = Vacancy.objects.filter(~Q(profile__exact=req.user.profile))
+    else:
+        vacancies = Vacancy.objects.all()
     if (price):
         vacancies = vacancies.filter(price__gt=int(price))
     if (date):
@@ -25,7 +28,6 @@ def catalog(req):
     if (title):
         vacancies = vacancies.filter(id=int(title))
     return render(req, "catalog.html", {"vacancies": vacancies, "price":price, "date":date, "title":Vacancy.objects.get(id=int(title)) if title else ""})
-
 def vacancy_card(request: HttpRequest, pk: int):
     if (pk):
         vacancy = Vacancy.objects.get(id=pk)

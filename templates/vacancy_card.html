@@ -5,10 +5,14 @@
         <h1 class="full-info-text">Полная информация о вакансии</h1>
         <h2 class="full-info-text">Название: {{ vacancy.title }}</h2>
         <h3 class="full-info-text">Работодатель: {{ vacancy.author }} </h3>
+        <h3 class="full-info-text">Номер телефона работодателя: {{ vacancy.author.phone }} </h3>
         <h3 class="full-info-text">Зарплата: {{ vacancy.price }} рублей</h3>
         <p class="full-info-text">Описание: {{ vacancy.description }}</p>
         <p class="full-info-text">Дата публикации: {{ vacancy.publication_date }}</p>
+        {% if user.profile.role %}
+        {% else %}
         <a class="full-info-text" href="{% url "add_vacancy" vacancy.id %}">Отозваться</a>
+        {% endif %}
     </div>
     
 {% endblock main %}
