@@ -19,7 +19,7 @@
 ## 🧱 Архитектура проекта
 
 ```
-FinalDjangoProject-main/
+FinalDjangoProject/
 │
 ├── final_project/         # Главные настройки и маршруты
 │   ├── settings.py
@@ -48,7 +48,7 @@ FinalDjangoProject-main/
 ## 🛠️ Используемые технологии
 
 - Python 3.x
-- Django 4.x
+- Django 5.x
 - SQLite (по умолчанию)
 - HTML, CSS, JavaScript
 
@@ -82,7 +82,10 @@ FinalDjangoProject-main/
 
 ```bash
 git clone <репозиторий>
-cd FinalDjangoProject-main
+cd FinalDjangoProject
+python -m venv venv
+venv\Scripts\activate  # на Windows
+source venv/bin/activate  # на Linux/MacOS
 pip install -r requirements.txt
 python manage.py migrate
 python manage.py runserver
@@ -92,7 +95,7 @@ python manage.py runserver
 
 ## 📃 Лицензия
 
-Проект создан в учебных или демонстрационных целях. Авторские права принадлежат разработчику.
+Проект создан в учебных целях. Авторские права принадлежат разработчикам.
 
 ---
 
